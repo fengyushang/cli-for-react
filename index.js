@@ -50,5 +50,5 @@ const exists = function (src, dst, callback) {
     })
 };
 if(projectName){
-    exists(path.join(__dirname, './template'), root, copy);
+    exists(path.join(__dirname, './template/'), root, copy);
 }
