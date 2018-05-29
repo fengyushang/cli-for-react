@@ -1,0 +1,21 @@
+{
+  "name": "cli-for-react",
+  "version": "1.0.0",
+  "description": "CLI for creat react project",
+  "main": "./src/index.js",
+  "bin": {
+    "react-cli":"src/index.js"
+  },
+  "author": "fengyushang",
+  "keywords":[
+    "cli",
+    "react",
+    "react-cli",
+    "cli-for-react",
+    "project"
+  ],
+  "license": "ISC",
+  "dependencies": {
+
+  }
+}

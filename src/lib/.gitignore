@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+/lib/
+.DS_Store
+*.log
+yarn.lock
+package_lock.json
+*.bak
+proxyServer.js
