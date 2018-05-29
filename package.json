@@ -1,6 +1,6 @@
 {
   "name": "cli-for-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI for creat react project",
   "main": "./src/index.js",
   "bin": {
