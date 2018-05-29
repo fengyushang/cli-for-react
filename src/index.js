@@ -47,4 +47,4 @@ const exists=function(src,dst,callback){
         }
     })
 };
-exists(path.resolve(__dirname, 'lib'),root,copy);
+exists(path.join(__dirname, './lib'),root,copy);
