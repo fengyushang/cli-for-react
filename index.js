@@ -1,16 +1,14 @@
-#! node
+#!/usr/bin/env node
 
 const fs = require('fs');
 const path = require('path');
 
 const projectName = process.argv[2];
-console.log(projectName);
 const root = path.resolve(projectName);
 
 let stat = fs.stat;
 
 const copy = function (src, dst) {
-    console.log(src,dst);
     //读取目录
     fs.readdir(src, function (err, paths) {
         if (err) {
@@ -18,6 +16,12 @@ const copy = function (src, dst) {
         }
         paths.forEach(function (path) {
             const _src = src + '/' + path;
+            if(path.includes('template-package')){
+                path = path.replace(/template-package/g,'package');
+            }
+            if(path.includes('template-git-ignore')){
+                path = path.replace(/template-git-ignore/g,'gitignore');
+            }
             const _dst = dst + '/' + path;
             let readable;
             let writable;

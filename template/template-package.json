@@ -1,29 +1,15 @@
 {
-  "name": "component-for-react",
+  "name": "project-name",
   "version": "1.0.0",
-  "description": "component-for-react",
-  "main": "lib/index.js",
+  "description": "project-react",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./scripts/server.js",
-    "build": "webpack --config ./scripts/webpack.config.prod.js",
-    "clean": "rimraf lib",
-    "move": "cpx src/components/**/*.{js,less,css,md,png,jpg,jpeg} lib/components",
-    "lib": "npm run clean && npm run move && babel lib/components -d lib/components"
+    "build": "webpack --config ./scripts/webpack.config.prod.js"
   },
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fengyushang/component-for-react.git"
-  },
-  "author": "fengyushang",
+  "author": "--",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fengyushang/component-for-react/issues"
-  },
-  "homepage": "https://github.com/fengyushang/component-for-react#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.2",
@@ -35,7 +21,6 @@
     "clean-webpack-plugin": "^0.1.19",
     "compression": "^1.7.2",
     "core-decorators": "^0.20.0",
-    "cpx": "^1.5.0",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
