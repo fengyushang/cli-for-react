@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(baseConfig, {
     mode: 'production',
@@ -26,9 +27,13 @@ module.exports = merge(baseConfig, {
         new ExtractTextPlugin('assets/styles/[name].[chunkhash:8].css'),
     ],
     optimization: {
-        splitChunks: {
+        /*splitChunks: {
             chunks: 'all',
             name: false,
-        }
-    }
+        },*/
+        minimizer:[
+            new UglifyJsPlugin()
+        ]
+    },
+    performance: { hints: false }
 });
