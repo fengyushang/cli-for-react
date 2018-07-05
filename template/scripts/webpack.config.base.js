@@ -15,10 +15,6 @@ module.exports = {
         publicPath: '/'
     },
     plugins: [
-        new CleanWebpackPlugin(rootPath + '/dist', {
-            root: rootPath,
-            verbose: true
-        }),
         new HtmlWebpackPlugin({
             title: Config.title,
             filename: 'index.html',

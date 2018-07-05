@@ -2,6 +2,9 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const rootPath = path.resolve(__dirname, '../');
 
 module.exports = merge(baseConfig, {
     mode: 'production',
@@ -24,6 +27,10 @@ module.exports = merge(baseConfig, {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(rootPath + '/dist', {
+            root: rootPath,
+            verbose: true
+        }),
         new ExtractTextPlugin('assets/styles/[name].[chunkhash:8].css'),
     ],
     optimization: {
