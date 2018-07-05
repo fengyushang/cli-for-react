@@ -1,13 +1,13 @@
 {
   "name": "cli-for-react",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "CLI for creat react project",
-  "main":"index.js",
+  "main": "index.js",
   "bin": {
-    "react-cli":"./index.js"
+    "react-cli": "./index.js"
   },
   "author": "fengyushang",
-  "keywords":[
+  "keywords": [
     "cli",
     "react",
     "react-cli",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/fengyushang/cli-for-react#readme",
   "dependencies": {
-
+    "user": "0.0.0"
   }
 }
