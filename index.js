@@ -1,58 +1,53 @@
 #!/usr/bin/env node
-
 const fs = require('fs');
-const path = require('path');
+const program = require('commander');
+const download = require('download-git-repo');
+const handlebars = require('handlebars');
+const inquirer = require('inquirer');
+const ora = require('ora');
+const chalk = require('chalk');
+const symbols = require('log-symbols');
 
-const projectName = process.argv[2];
-const root = path.resolve(projectName);
-
-let stat = fs.stat;
-
-const copy = function (src, dst) {
-    //读取目录
-    fs.readdir(src, function (err, paths) {
-        if (err) {
-            throw err;
-        }
-        paths.forEach(function (path) {
-            const _src = src + '/' + path;
-            if(path.includes('template-package')){
-                path = path.replace(/template-package/g,'package');
-            }
-            if(path.includes('template-git-ignore')){
-                path = path.replace(/template-git-ignore/g,'gitignore');
-            }
-            const _dst = dst + '/' + path;
-            let readable;
-            let writable;
-            stat(_src, function (err, st) {
-                if (err) {
-                    throw err;
+program.version('1.0.0', '-v, --version')
+    .command('init <name>')
+    .action((name) => {
+        if(!fs.existsSync(name)){
+            inquirer.prompt([
+                {
+                    name: 'description',
+                    message: '请输入项目描述'
+                },
+                {
+                    name: 'author',
+                    message: '请输入作者名称'
                 }
-
-                if (st.isFile()) {
-                    readable = fs.createReadStream(_src);//创建读取流
-                    writable = fs.createWriteStream(_dst);//创建写入流
-                    readable.pipe(writable);
-                } else if (st.isDirectory()) {
-                    exists(_src, _dst, copy);
-                }
-            });
-        });
-    });
-};
-const exists = function (src, dst, callback) {
-    //测试某个路径下文件是否存在
-    fs.exists(dst, function (exists) {
-        if (exists) {//存在
-            callback(src, dst);
-        } else {//不存在
-            fs.mkdir(dst, function () {//创建目录
-                callback(src, dst)
+            ]).then((answers) => {
+                const spinner = ora('正在下载模板...');
+                spinner.start();
+                download('https://github.com/fengyushang/template#master', name, {clone: true}, (err) => {
+                    if(err){
+                        spinner.fail();
+                        console.log(symbols.error, chalk.red(err));
+                    }else{
+                        spinner.succeed();
+                        const fileName = `${name}/package.json`;
+                        const meta = {
+                            name,
+                            description: answers.description,
+                            author: answers.author
+                        };
+                        if(fs.existsSync(fileName)){
+                            const content = fs.readFileSync(fileName).toString();
+                            const result = handlebars.compile(content)(meta);
+                            fs.writeFileSync(fileName, result);
+                        }
+                        console.log(symbols.success, chalk.green('项目初始化完成'));
+                    }
+                })
             })
+        }else{
+            // 错误提示项目已存在，避免覆盖原有项目
+            console.log(symbols.error, chalk.red('项目已存在'));
         }
-    })
-};
-if(projectName){
-    exists(path.join(__dirname, './template/'), root, copy);
-}
+    });
+program.parse(process.argv);
