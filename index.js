@@ -24,7 +24,7 @@ program.version('1.0.0', '-v, --version')
             ]).then((answers) => {
                 const spinner = ora('正在下载模板...');
                 spinner.start();
-                download('https://github.com/fengyushang/template#master', name, {clone: true}, (err) => {
+                download('https://github.com:fengyushang/template#master', name, {clone: true}, (err) => {
                     if(err){
                         spinner.fail();
                         console.log(symbols.error, chalk.red(err));
