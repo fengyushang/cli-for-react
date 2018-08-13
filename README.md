@@ -1,4 +1,4 @@
 # CLI-for-react
 npm install -g cli-for-react
 
-react-cli [projectName]
+react-cli init [projectName]

@@ -1,6 +1,6 @@
 {
   "name": "cli-for-react",
-  "version": "1.2.8",
+  "version": "2.0.0",
   "description": "CLI for creat react project",
   "main": "index.js",
   "bin": {
@@ -21,6 +21,12 @@
   },
   "homepage": "https://github.com/fengyushang/cli-for-react#readme",
   "dependencies": {
-    "user": "0.0.0"
+    "chalk": "^2.4.1",
+    "commander": "^2.17.1",
+    "download-git-repo": "^1.0.2",
+    "handlebars": "^4.0.11",
+    "inquirer": "^6.1.0",
+    "log-symbols": "^2.2.0",
+    "ora": "^3.0.0",
   }
 }
